@@ -30,7 +30,7 @@ add_library(yourLibrary)
 
 # ...
 
-reloc_cpp_generate(LIBRARY yourLibrary
+reloc_cpp_generate(yourLibrary
                    HEADER ${CMAKE_CURRENT_BINARY_DIR}/yourLibrary_getInstallPrefix.h
                    FUNCTION_NAME yourLibrary::getInstallPrefix)
 ```
