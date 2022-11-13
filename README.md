@@ -1,10 +1,10 @@
 # reloc-cpp
 
-CMake/C++ library to get the installation prefix of a shared library.
+CMake/C++ library to get the installation prefix of a shared library in a relocatable way.
 
-In a nutshell, it permits to avoid the need to hardcode the location of `CMAKE_INSTALL_PREFIX` in a shared library if you need it to localize other resources installed with the package. This permits to easily implement *relocatable* installation, as long as the library is compiled as shared. 
+In a nutshell, it permits to avoid the need to hardcode the location of `CMAKE_INSTALL_PREFIX` in a shared library if you need it to localize other resources installed with the package. This permits to easily move the installation prefix in a location different from `CMAKE_INSTALL_PREFIX` after the installation (i.e. making it a *relocatable* installation), as long as the library is compiled as shared.
 
-In the case that the library is compiled as static, `reloc-cpp` will fall back to hardcode `CMAKE_INSTALL_PREFIX`  in the library. 
+In the case that the library is compiled as static, `reloc-cpp` will fall back to hardcode `CMAKE_INSTALL_PREFIX`  in the library.
 
 ## Installation
 
@@ -31,8 +31,8 @@ add_library(yourLibrary)
 # ...
 
 reloc_cpp_generate(yourLibrary
-                   HEADER ${CMAKE_CURRENT_BINARY_DIR}/yourLibrary_getInstallPrefix.h
-                   FUNCTION_NAME yourLibrary::getInstallPrefix)
+                   GENERATED_HEADER ${CMAKE_CURRENT_BINARY_DIR}/yourLibrary_getInstallPrefix.h
+                   GENERATED_FUNCTION yourLibrary::getInstallPrefix)
 ```
 
 then, you can use it in C++ as:
@@ -41,7 +41,7 @@ then, you can use it in C++ as:
 #include <yourLibrary_getInstallationPrefix.h>
 
 // This return the value corresponding to CMAKE_INSTALL_PREFIX
-std::string installPrefix = yourLibrary::getInstallPrefix();
+std::string installPrefix = yourLibrary::getInstallPrefix().value();
 ~~~
 
 
