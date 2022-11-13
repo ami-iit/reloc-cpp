@@ -32,7 +32,8 @@ jobs:
       run: |
         mamba install cmake compilers make ninja pkg-config ycm-cmake-modules
 
-    - name: Additional Dependencies [Windows
+    - name: Additional Dependencies [Windows]
+      if: contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
         mamba install vs2019_win-64
