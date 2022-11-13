@@ -50,6 +50,17 @@ std::string installPrefix = yourLibrary::getInstallPrefix().value();
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
+## References
+
+References that were useful as inspiration when developing reloc-cpp:
+* ["Helping C/C++ Packages be Relocatable" presentation](https://indico.cern.ch/event/848215/contributions/3591953/attachments/1923018/3181752/HSFPackagingRelocation.pdf)
+* [Resourceful: Techniques for installing and accessing resource files using C++ and Python.](https://github.com/drbenmorgan/Resourceful)
+* ["Qt is relocatable" blog post](https://www.qt.io/blog/qt-is-relocatable)
+* [binreloc: Library for creating relocatable software](https://github.com/limbahq/binreloc)
+
+Resources that could be useful as an alternative to reloc-cpp:
+* [cmrc: A Resource Compiler in a Single CMake Script ](https://github.com/vector-of-bool/cmrc)
+
 ## License
 
 [BSD-3-Clause](https://choosealicense.com/licenses/bsd-3-clause/)
