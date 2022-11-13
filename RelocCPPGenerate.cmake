@@ -114,6 +114,8 @@ ${RCG_HEADER_CLOSE_NAMESPACES}
 
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <dlfcn.h>
 #endif
 
 #include <iostream>
