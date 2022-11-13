@@ -129,7 +129,7 @@ std::optional<std::string> ${RCG_GENERATED_FUNCTION}()
     int res_val = dladdr(reinterpret_cast<void *>(&${RCG_GENERATED_FUNCTION}), &info);
     if (info.dli_fname && res_val > 0)
     {
-      library_location = info_dli_fname;
+      library_location = info.dli_fname;
     }
     else
     {
