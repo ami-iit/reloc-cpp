@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Istituto Italiano di Tecnologia (IIT)
+# SPDX-License-Identifier: BSD-3-Clause
+
+@PACKAGE_INIT@
+
+set_and_check(RELOC_CPP_MODULE_DIR "@PACKAGE_RELOC_CPP_INSTALL_MODULE_DIR@")
+include(${RELOC_CPP_MODULE_DIR}/RelocCPPGenerate.cmake)
