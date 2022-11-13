@@ -15,7 +15,7 @@ include(FetchContent)
 FetchContent_Declare(
   reloc-cpp
   GIT_REPOSITORY https://github.com/ami-iit/reloc-cpp.git
-  GIT_TAG        <used_tag>
+  GIT_TAG        v0.1.0
 )
 
 FetchContent_MakeAvailable(reloc-cpp)
