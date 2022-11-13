@@ -24,13 +24,13 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         mamba-version: "*"
+        channels: conda-forge,defaults
         miniforge-variant: Mambaforge
+        channel-priority: true
 
     - name: Dependencies
       shell: bash -l {0}
       run: |
-        # Workaround for https://github.com/conda-incubator/setup-miniconda/issues/186
-        conda config --remove channels defaults
         mamba install cmake compilers make ninja pkg-config ycm-cmake-modules
 
     - name: Additional Dependencies [Windows]
@@ -40,23 +40,24 @@ jobs:
         mamba install vs2019_win-64
 
 
-    - name: Configure [Linux&macOS]
+    - name: Configure&Build&Test&Install [Linux&macOS]
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      shell: bash -l {0}
       run: |
         mkdir -p build
         cd build
         cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
-
-    - name: Build 
-      run: |
-        cd build
         cmake --build . --config ${{ matrix.build_type }}
-
-    - name: Test
-      run: |
-        cd build
         ctest --output-on-failure -C ${{ matrix.build_type }}
-        
-    - name: Install
+        cmake --install . --config ${{ matrix.build_type }}
+
+    - name: Configure&Build&Test&Install [Windows]
+      if: contains(matrix.os, 'windows')
+      shell: cmd /C CALL {0}
       run: |
+        mkdir build
         cd build
+        cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        cmake --build . --config ${{ matrix.build_type }}
+        ctest --output-on-failure -C ${{ matrix.build_type }}
         cmake --install . --config ${{ matrix.build_type }}
