@@ -46,7 +46,7 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=./install ..
         cmake --build . --config ${{ matrix.build_type }}
         ctest --output-on-failure -C ${{ matrix.build_type }}
         cmake --install . --config ${{ matrix.build_type }}
@@ -57,7 +57,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+        cmake -GNinja -DBUILD_TESTING:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_INSTALL_PREFIX=./install ..
         cmake --build . --config ${{ matrix.build_type }}
         ctest --output-on-failure -C ${{ matrix.build_type }}
         cmake --install . --config ${{ matrix.build_type }}
