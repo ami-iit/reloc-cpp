@@ -24,12 +24,13 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         mamba-version: "*"
-        channels: conda-forge,defaults
-        channel-priority: true
+        miniforge-variant: Mambaforge
 
     - name: Dependencies
       shell: bash -l {0}
       run: |
+        # Workaround for https://github.com/conda-incubator/setup-miniconda/issues/186
+        conda config --remove channels defaults
         mamba install cmake compilers make ninja pkg-config ycm-cmake-modules
 
     - name: Additional Dependencies [Windows]
