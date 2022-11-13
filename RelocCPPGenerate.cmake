@@ -128,10 +128,10 @@ std::optional<std::string> ${RCG_GENERATED_FUNCTION}()
     std::filesystem::path library_location;
 #ifndef _WIN32
     Dl_info address_info;
-    int res_val = dladdr(reinterpret_cast<void *>(&${RCG_GENERATED_FUNCTION}), &info);
-    if (info.dli_fname && res_val > 0)
+    int res_val = dladdr(reinterpret_cast<void *>(&${RCG_GENERATED_FUNCTION}), &address_info);
+    if (address_info.dli_fname && res_val > 0)
     {
-      library_location = info.dli_fname;
+      library_location = address_info.dli_fname;
     }
     else
     {
