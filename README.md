@@ -2,7 +2,7 @@
 
 CMake/C++ library to get the installation prefix of a shared library in a relocatable way.
 
-In a nutshell, it permits to avoid the need to hardcode the location of `CMAKE_INSTALL_PREFIX` in a shared library if you need it to localize other resources installed with the package. This permits to easily move the installation prefix in a location different from `CMAKE_INSTALL_PREFIX` after the installation (i.e. making it a *relocatable* installation), as long as the library is compiled as shared.
+In a nutshell, it permits to avoid the need to hardcode the location of `CMAKE_INSTALL_PREFIX` in a shared library if you need it to localize other resources installed with the package. This permits to easily move the installation prefix in a location different from `CMAKE_INSTALL_PREFIX` after the installation (i.e. making it a *relocatable* installation), as long as the library is compiled as shared. This is useful when the C++ shared library is packaged in package managers that create the package with a given `CMAKE_INSTALL_PREFIX` and install it with a different prefix, such as [conda](https://docs.conda.io), [vcpkg](https://vcpkg.io) or [conan](https://conan.io/).
 
 In the case that the library is compiled as static, `reloc-cpp` will fall back to hardcode `CMAKE_INSTALL_PREFIX`  in the library.
 
