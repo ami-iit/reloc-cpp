@@ -6,6 +6,8 @@ In a nutshell, it permits to avoid the need to hardcode the location of `CMAKE_I
 
 In the case that the library is compiled as static, `reloc-cpp` will fall back to hardcode `CMAKE_INSTALL_PREFIX`  in the library.
 
+`reloc-cpp` requires the use of C++ 17 or any later version. 
+
 ## Installation
 
 ### FetchContent
