@@ -21,11 +21,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: conda-incubator/setup-miniconda@v2
+    - uses: conda-incubator/setup-miniconda@v3
       with:
         mamba-version: "*"
         channels: conda-forge,defaults
-        miniforge-variant: Mambaforge
         channel-priority: true
 
     - name: Dependencies
