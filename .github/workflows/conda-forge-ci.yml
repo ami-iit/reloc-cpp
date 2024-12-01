@@ -23,20 +23,20 @@ jobs:
 
     - uses: conda-incubator/setup-miniconda@v3
       with:
-        mamba-version: "*"
+        miniforge-version: latest
         channels: conda-forge,defaults
         channel-priority: true
 
     - name: Dependencies
       shell: bash -l {0}
       run: |
-        mamba install cmake compilers make ninja pkg-config ycm-cmake-modules
+        conda install cmake compilers make ninja pkg-config ycm-cmake-modules
 
     - name: Additional Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
-        mamba install vs2019_win-64
+        conda install vs2019_win-64
 
 
     - name: Configure&Build&Test&Install [Linux&macOS]
